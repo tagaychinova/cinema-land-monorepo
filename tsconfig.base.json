@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@cinema-land-monorepo/db": ["libs/db/src/index.ts"],
       "@cinema-land-monorepo/shared-ui": ["libs/shared/ui/src/index.ts"]
     }
   },

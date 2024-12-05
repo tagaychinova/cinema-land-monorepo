@@ -1,11 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-
-type Movie = {
-  id: number;
-  title: string;
-  genre: string;
-  yearOfIssue: number;
-};
+import { Movie } from '../../types';
 
 export const movieApi = createApi({
   reducerPath: 'movieApi',

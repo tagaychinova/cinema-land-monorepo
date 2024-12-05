@@ -1,7 +1,8 @@
 import { http, HttpResponse } from 'msw';
+import { Movie } from '../../../types';
 
-const movie = {
-  id: 1,
+const movie: Movie = {
+  id: '1',
   title: '222',
   genre: 'Фэнтези',
   yearOfIssue: 2001,

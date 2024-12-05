@@ -1,12 +1,16 @@
-export async function GET(request: Request, params: { id: string }) {
-  const { id } = params;
+import { unstable_noStore as noStore } from 'next/cache';
 
-  const movie = {
-    id,
-    title: '5Гарри Поттер и философский камень',
-    genre: 'Фэнтези',
-    yearOfIssue: 2001,
-  };
+import prisma from '../../../../lib/prisma';
+
+export async function GET(
+  request: Request,
+  { params }: { params: { id: string } }
+) {
+  noStore();
+
+  const movie = await prisma.movie.findFirst({
+    where: { id: params.id },
+  });
 
   return Response.json(movie);
 }
