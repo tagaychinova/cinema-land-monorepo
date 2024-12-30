@@ -12,6 +12,7 @@ const roboto = Roboto({
 import './global.css';
 import StoreProvider from './StoreProvider';
 import BrowserMocks from './BrowserMocks';
+import { ToastMessage } from '@ui';
 
 export const metadata = {
   title: 'Cinema Land',
@@ -23,15 +24,16 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const data = await fetch('http://localhost:3000/api/movie');
-  console.log(await data.json());
   return (
     <html lang="ru">
       <body className={roboto.variable}>
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
             <BrowserMocks>
-              <StoreProvider>{children}</StoreProvider>
+              <StoreProvider>
+                {children}
+                <ToastMessage />
+              </StoreProvider>
             </BrowserMocks>
           </ThemeProvider>
         </AppRouterCacheProvider>

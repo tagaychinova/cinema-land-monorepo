@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import counterReducer from './features/counter/counterSlice';
 import productReducer from './features/product/productSlice';
+import toastMessageReducer from './features/toastMessage/toastMessageSlice';
 import { movieApi } from './services/movie';
 
 export const makeStore = () => {
@@ -8,6 +9,7 @@ export const makeStore = () => {
     reducer: {
       counter: counterReducer,
       product: productReducer,
+      toastMessage: toastMessageReducer,
       [movieApi.reducerPath]: movieApi.reducer,
     },
     middleware: (getDefaultMiddleware) =>

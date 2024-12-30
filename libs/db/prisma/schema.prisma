@@ -20,6 +20,14 @@ model Movie {
   title             String
   genre             String
   yearOfIssue       Int
-  @@map("movies")
 }
 
+model Country {
+  id                Int       @id @default(autoincrement())
+  name              String    @unique
+}
+
+model Genre {
+  id                Int       @id @default(autoincrement())
+  name              String    @unique
+}

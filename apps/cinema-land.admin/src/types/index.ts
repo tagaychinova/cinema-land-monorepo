@@ -4,3 +4,13 @@ export interface Movie {
   genre: string;
   yearOfIssue: number;
 }
+
+export interface Country {
+  id: number;
+  name: string;
+}
+
+export interface ToastMessage {
+  message: string;
+  type: 'success' | 'info' | 'warning' | 'error';
+}

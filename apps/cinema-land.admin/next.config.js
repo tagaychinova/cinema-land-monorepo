@@ -21,6 +21,12 @@ const nextConfig = {
   experimental: {
     instrumentationHook: true,
   },
+
+  logging: {
+    fetches: {
+      fullUrl: true,
+    },
+  },
 };
 
 const plugins = [
