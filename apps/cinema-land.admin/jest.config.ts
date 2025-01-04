@@ -2,7 +2,6 @@
 const nextJest = require('next/jest');
 
 const createJestConfig = nextJest({
-  dir: './',
   displayName: 'cinema-land.admin',
   preset: '../../jest.preset.js',
   transform: {
