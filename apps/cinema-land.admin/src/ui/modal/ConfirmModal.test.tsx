@@ -1,4 +1,4 @@
-import { prettyDOM, render } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import ConfirmModal from './ConfirmModal';
 

@@ -2,19 +2,20 @@ import * as React from 'react';
 import Dialog from '@mui/material/Dialog';
 import {
   Button,
+  CircularProgress,
   DialogActions,
   DialogContent,
   DialogTitle,
   IconButton,
   TextField,
 } from '@mui/material';
-import CloseIcon from '@mui/icons-material/Close';
 import { Controller, useForm } from 'react-hook-form';
-import { useFormState } from 'react-dom';
-import { Country } from '@types';
+import { Country, ErrorCode } from '@types';
 import { addCountry } from './actions';
+import CloseIcon from '@mui/icons-material/Close';
 import { useAppDispatch } from '../../../lib/hooks';
 import { setToastMessage } from '../../../lib/features/toastMessage/toastMessageSlice';
+import { useCallback } from 'react';
 
 type Props = {
   handleClose: () => void;
@@ -25,36 +26,39 @@ export default function AddCountryModal({ handleClose }: Props) {
     control,
     handleSubmit,
     getValues,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<Omit<Country, 'id'>>();
 
   const dispatch = useAppDispatch();
 
-  const [_, onSubmit, isPending] = useFormState(async () => {
-    try {
-      const country = await addCountry(getValues());
+  const onSubmit = useCallback(async () => {
+    const values = getValues();
 
+    const result = await addCountry(values);
+
+    if (result.success) {
       dispatch(
         setToastMessage({
-          message: `Страна "${country.name}" добавлена`,
+          message: `Страна "${result.payload.name}" добавлена`,
           type: 'success',
         })
       );
 
       handleClose();
 
-      return country;
-    } catch (e) {
-      dispatch(
-        setToastMessage({
-          message: 'Ошибка добавления страны',
-          type: 'error',
-        })
-      );
-
-      return null;
+      return;
     }
-  }, null);
+
+    dispatch(
+      setToastMessage({
+        message:
+          result.error.code === ErrorCode.NotUnique
+            ? `Страна названием "${values.name}" уже существует`
+            : 'Ошибка добавления страны',
+        type: 'error',
+      })
+    );
+  }, [dispatch, getValues, handleClose]);
 
   return (
     <Dialog onClose={handleClose} open>
@@ -71,8 +75,13 @@ export default function AddCountryModal({ handleClose }: Props) {
       >
         <CloseIcon />
       </IconButton>
-      <DialogContent dividers>
-        <form>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <DialogContent
+          dividers
+          sx={() => ({
+            minWidth: 500,
+          })}
+        >
           <Controller
             control={control}
             rules={{
@@ -86,18 +95,27 @@ export default function AddCountryModal({ handleClose }: Props) {
                 onChange={onChange}
                 value={value}
                 autoComplete="off"
+                sx={() => ({
+                  width: '100%',
+                })}
+                {...(errors.name
+                  ? {
+                      error: true,
+                      helperText: 'Обязательное поле',
+                    }
+                  : {})}
               />
             )}
             name="name"
           />
-          {errors.name && <span>Обязательное поле</span>}
-        </form>
-      </DialogContent>
-      <DialogActions>
-        <Button onClick={handleSubmit(onSubmit)} disabled={isPending}>
-          Сохранить
-        </Button>
-      </DialogActions>
+        </DialogContent>
+        <DialogActions>
+          {isSubmitting && <CircularProgress size={16} />}
+          <Button type="submit" disabled={isSubmitting}>
+            Сохранить
+          </Button>
+        </DialogActions>
+      </form>
     </Dialog>
   );
 }

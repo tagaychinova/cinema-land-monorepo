@@ -1,14 +1,30 @@
 'use server';
 
 import { countryStore } from '@stores';
-import { Country } from '@types';
+import { Country, Result, StorageError } from '@types';
 import { revalidatePath } from 'next/cache';
 
-export async function addCountry(country: Omit<Country, 'id'>) {
+export async function addCountry(
+  country: Omit<Country, 'id'>
+): Promise<Result<Country>> {
   revalidatePath('/dashboard/country');
 
-  const result = await countryStore.createCountry(country);
-  return result;
+  try {
+    const addedCountry = await countryStore.createCountry(country);
+
+    return {
+      success: true,
+      payload: addedCountry,
+    };
+  } catch (e) {
+    return {
+      success: false,
+      error: {
+        code: e instanceof StorageError ? e.code : undefined,
+        message: e instanceof Error ? e.message : 'Error',
+      },
+    };
+  }
 }
 
 export async function deleteCountry(id: number) {
