@@ -41,6 +41,37 @@ async function createCountry(country: Omit<Country, 'id'>) {
   }
 }
 
+async function updateCountry(country: Country) {
+  try {
+    const result = await prisma.country.update({
+      where: {
+        id: country.id,
+      },
+      data: {
+        name: country.name,
+      },
+    });
+
+    return result;
+  } catch (e) {
+    if (e instanceof Prisma.PrismaClientKnownRequestError) {
+      if (
+        e.code === 'P2002' &&
+        e.meta?.modelName === 'Country' &&
+        Array.isArray(e.meta?.target) &&
+        e.meta?.target.indexOf('name') > -1
+      ) {
+        throw new StorageError(
+          ErrorCode.NotUnique,
+          'The country already exists'
+        );
+      }
+    }
+
+    throw e;
+  }
+}
+
 async function deleteCountry(id: number) {
   const result = await prisma.country.delete({
     where: {
@@ -54,5 +85,6 @@ async function deleteCountry(id: number) {
 export const countryStore = Object.freeze({
   getCountries,
   createCountry,
+  updateCountry,
   deleteCountry,
 });

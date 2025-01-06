@@ -27,6 +27,27 @@ export async function addCountry(
   }
 }
 
+export async function editCountry(country: Country): Promise<Result<Country>> {
+  revalidatePath('/dashboard/country');
+
+  try {
+    const editedCountry = await countryStore.updateCountry(country);
+
+    return {
+      success: true,
+      payload: editedCountry,
+    };
+  } catch (e) {
+    return {
+      success: false,
+      error: {
+        code: e instanceof StorageError ? e.code : undefined,
+        message: e instanceof Error ? e.message : 'Error',
+      },
+    };
+  }
+}
+
 export async function deleteCountry(id: number) {
   revalidatePath('/dashboard/country');
 

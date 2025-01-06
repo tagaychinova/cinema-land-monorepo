@@ -1,68 +1,37 @@
 import * as React from 'react';
-import Dialog from '@mui/material/Dialog';
 import {
   Button,
   CircularProgress,
+  Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
   IconButton,
   TextField,
 } from '@mui/material';
-import { Controller, useForm } from 'react-hook-form';
-import { Country, ErrorCode } from '@types';
-import { addCountry } from './actions';
 import CloseIcon from '@mui/icons-material/Close';
-import { useAppDispatch } from '../../../lib/hooks';
-import { setToastMessage } from '../../../lib/features/toastMessage/toastMessageSlice';
-import { useCallback } from 'react';
+import { Control, Controller, FormState } from 'react-hook-form';
+import { Country } from '@types';
 
 type Props = {
+  title: string;
+  control: Control<Omit<Country, 'id'>, any>;
+  formState: FormState<Omit<Country, 'id'>>;
   handleClose: () => void;
+  handleSubmit: () => Promise<void>;
 };
 
-export default function AddCountryModal({ handleClose }: Props) {
-  const {
-    control,
-    handleSubmit,
-    getValues,
-    formState: { errors, isSubmitting },
-  } = useForm<Omit<Country, 'id'>>();
-
-  const dispatch = useAppDispatch();
-
-  const onSubmit = useCallback(async () => {
-    const values = getValues();
-
-    const result = await addCountry(values);
-
-    if (result.success) {
-      dispatch(
-        setToastMessage({
-          message: `Страна "${result.payload.name}" добавлена`,
-          type: 'success',
-        })
-      );
-
-      handleClose();
-
-      return;
-    }
-
-    dispatch(
-      setToastMessage({
-        message:
-          result.error.code === ErrorCode.NotUnique
-            ? `Страна названием "${values.name}" уже существует`
-            : 'Ошибка добавления страны',
-        type: 'error',
-      })
-    );
-  }, [dispatch, getValues, handleClose]);
-
+export default function CountryDialog({
+  title,
+  control,
+  formState,
+  handleClose,
+  handleSubmit,
+}: Props) {
+  const { errors, isSubmitting } = formState;
   return (
     <Dialog onClose={handleClose} open>
-      <DialogTitle>Добавление страны</DialogTitle>
+      <DialogTitle>{title}</DialogTitle>
       <IconButton
         aria-label="close"
         onClick={handleClose}
@@ -75,7 +44,7 @@ export default function AddCountryModal({ handleClose }: Props) {
       >
         <CloseIcon />
       </IconButton>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit}>
         <DialogContent
           dividers
           sx={() => ({
