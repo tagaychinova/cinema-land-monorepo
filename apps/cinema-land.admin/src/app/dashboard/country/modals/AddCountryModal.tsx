@@ -2,8 +2,8 @@ import * as React from 'react';
 import { useForm } from 'react-hook-form';
 import { Country, ErrorCode } from '@types';
 import { addCountry } from '../actions';
-import { useAppDispatch } from '../../../../lib/hooks';
-import { setToastMessage } from '../../../../lib/features/toastMessage/toastMessageSlice';
+import { useAppDispatch } from '@lib/hooks';
+import { setToastMessage } from '@lib/features';
 import { useCallback } from 'react';
 import CountryDialog from './CountryDialog';
 

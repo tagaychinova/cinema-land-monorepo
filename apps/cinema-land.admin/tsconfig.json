@@ -19,6 +19,8 @@
     "types": ["jest", "node", "@testing-library/jest-dom"],
     "paths": {
       "@cinema-land-monorepo/db": ["libs/db/src/index.ts"],
+      "@lib/hooks": ["apps/cinema-land.admin/src/lib/hooks.ts"],
+      "@lib/features": ["apps/cinema-land.admin/src/lib/features/index.ts"],
       "@types": ["apps/cinema-land.admin/src/types/index.ts"],
       "@stores": ["apps/cinema-land.admin/src/stores/index.ts"],
       "@ui": ["apps/cinema-land.admin/src/ui/index.ts"]
