@@ -18,10 +18,6 @@ const nextConfig = {
     styledComponents: true,
   },
 
-  experimental: {
-    instrumentationHook: true,
-  },
-
   logging: {
     fetches: {
       fullUrl: true,
