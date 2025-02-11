@@ -15,6 +15,10 @@ export interface ToastMessage {
   type: 'success' | 'info' | 'warning' | 'error';
 }
 
+export type Navbar = {
+  isOpened: boolean;
+};
+
 export enum ErrorCode {
   NotUnique,
 }

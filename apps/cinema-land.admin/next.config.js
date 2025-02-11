@@ -23,6 +23,21 @@ const nextConfig = {
       fullUrl: true,
     },
   },
+
+  redirects: async () => {
+    return [
+      {
+        source: '/',
+        destination: '/dashboard/movie',
+        permanent: true,
+      },
+      {
+        source: '/dashboard',
+        destination: '/dashboard/movie',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 const plugins = [
