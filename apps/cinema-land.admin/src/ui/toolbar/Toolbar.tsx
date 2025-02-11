@@ -7,10 +7,19 @@ import { AppBar, Button, IconButton, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import { toggleNavbar } from '@lib/features';
-import { logout } from './actions';
 import Link from 'next/link';
+import { styled } from '@mui/material/styles';
+import UserMenu from './UserMenu';
 
-export function Toolbar() {
+interface Props {
+  username: string;
+}
+
+const LogoLink = styled(Link)(() => ({
+  flexGrow: 1,
+}));
+
+export function Toolbar({ username }: Props) {
   const isNavbarOpened = useAppSelector((state) => state.navbar.isOpened);
   const dispatch = useAppDispatch();
 
@@ -33,14 +42,10 @@ export function Toolbar() {
             {isNavbarOpened ? <MenuIcon /> : <MenuOpenIcon />}
           </IconButton>
         </Tooltip>
-        <Link href="/">
-          <Typography variant="h6" sx={{ flexGrow: 1 }}>
-            Cinema Land. Admin Dashboard
-          </Typography>
-        </Link>
-        <Button color="inherit" onClick={logout}>
-          Logout
-        </Button>
+        <LogoLink href="/" className="">
+          <Typography variant="h6">Cinema Land. Admin Dashboard</Typography>
+        </LogoLink>
+        <UserMenu username={username} />
       </MuiToolbar>
     </AppBar>
   );
