@@ -13,7 +13,8 @@
         "@next/next/no-html-link-for-pages": [
           "error",
           "apps/cinema-land.admin/pages"
-        ]
+        ],
+        "@typescript-eslint/no-empty-function": "off"
       }
     },
     {
