@@ -1,18 +1,15 @@
 'use client';
 import * as React from 'react';
+import { use } from 'react';
 import { useGetMovieQuery } from '../../../../lib/services/movie';
 import { Controller, useForm } from 'react-hook-form';
 import { useCallback } from 'react';
 import { Button, MenuItem, Select, TextField } from '@mui/material';
 
-export default function Page({
-  params,
-}: {
-  params: {
-    id: string;
-  };
-}) {
-  const { id } = params;
+type Params = Promise<{ id: string }>;
+
+export default function Page({ params }: { params: Params }) {
+  const { id } = use(params);
 
   const { data, error, isLoading } = useGetMovieQuery(id);
 
