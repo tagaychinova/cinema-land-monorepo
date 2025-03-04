@@ -21,3 +21,6 @@ INSERT INTO "Genre" (name) VALUES
     ('Боевик'),
 	('Комедия'),
     ('Фантастика');
+
+INSERT INTO "User" (email, password) VALUES
+    ('admin@cinemaland.ru', '$2b$10$yHMqXiM1uJyYkk5eA6rvruw6PNZpROoNE1HCrPOq9XpVBZPfy1k9q');
