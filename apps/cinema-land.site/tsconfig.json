@@ -16,10 +16,17 @@
         "name": "next"
       }
     ],
-    "types": [
-      "jest",
-      "node"
-    ]
+    "types": ["jest", "node", "@testing-library/jest-dom"],
+    "paths": {
+      "@cinema-land-monorepo/db": ["libs/db/src/index.ts"],
+      "@lib/hooks": ["apps/cinema-land.site/src/lib/hooks.ts"],
+      "@lib/features": ["apps/cinema-land.site/src/lib/features/index.ts"],
+      "@types": ["apps/cinema-land.site/src/types/index.ts"],
+      "@stores": ["apps/cinema-land.site/src/stores/index.ts"],
+      "@ui": ["apps/cinema-land.site/src/ui/index.ts"],
+      "@utils": ["apps/cinema-land.site/src/utils/index.ts"],
+      "@icons": ["apps/cinema-land.site/src/icons/index.ts"]
+    }
   },
   "include": [
     "**/*.ts",
@@ -31,10 +38,5 @@
     "next-env.d.ts",
     ".next/types/**/*.ts"
   ],
-  "exclude": [
-    "node_modules",
-    "jest.config.ts",
-    "**/*.spec.ts",
-    "**/*.test.ts"
-  ]
+  "exclude": ["node_modules", "jest.config.ts", "**/*.spec.ts", "**/*.test.ts"]
 }
