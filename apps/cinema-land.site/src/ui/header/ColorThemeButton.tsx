@@ -14,7 +14,10 @@ export default function ColorThemeButton() {
   };
 
   return (
-    <Button onClick={handleToggleThemeClick}>
+    <Button
+      onClick={handleToggleThemeClick}
+      className="flex items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg w-10 h-10"
+    >
       {theme.value === 'light' ? <SunIcon /> : <MoonIcon />}
     </Button>
   );
