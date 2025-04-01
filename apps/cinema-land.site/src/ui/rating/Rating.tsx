@@ -1,7 +1,7 @@
 import { StartSolidIcon } from '@icons';
 
 type Props = {
-  value: string;
+  value: number;
 };
 
 export function Rating({ value }: Props) {
