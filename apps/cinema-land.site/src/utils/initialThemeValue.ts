@@ -5,7 +5,7 @@ const THEME_COOKIE_KEY = 'theme';
 
 export const getInitialThemeValue = (cookieStore: ReadonlyRequestCookies) => {
   const themeValue = cookieStore.get(THEME_COOKIE_KEY)?.value;
-  const theme: ThemeValue = themeValue === 'dark' ? themeValue : 'light';
+  const theme: ThemeValue = themeValue === 'light' ? themeValue : 'dark';
   return theme;
 };
 
