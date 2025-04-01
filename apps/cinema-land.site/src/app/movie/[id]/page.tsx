@@ -1,5 +1,6 @@
 import { use } from 'react';
 import Image from 'next/image';
+import { Rating } from '@ui';
 
 type Params = Promise<{ id: string }>;
 
@@ -39,7 +40,10 @@ export default function Movie({ params }: { params: Params }) {
           </div>
           <div className="flex">
             <div className="secondary-text w-48">Рейтинг:</div>
-            <div className="primary-text">8.2 / 10</div>
+            <div className="primary-text flex">
+              <Rating value={8.2} />
+              8.2 / 10
+            </div>
           </div>
           <div>
             <div className="secondary-text w-48">О фильме:</div>

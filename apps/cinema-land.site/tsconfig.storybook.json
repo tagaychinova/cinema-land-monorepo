@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "emitDecoratorMetadata": true
+  },
+  "exclude": ["src/ui/**/*.spec.ts", "src/ui/**/*.test.ts"],
+  "include": [
+    "src/ui/**/*.stories.ts",
+    "src/ui/**/*.stories.tsx",
+    ".storybook/*.js",
+    ".storybook/*.ts"
+  ]
+}
