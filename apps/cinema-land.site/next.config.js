@@ -17,10 +17,6 @@ const nextConfig = {
     // For other options, see https://styled-components.com/docs/tooling#babel-plugin
     styledComponents: true,
   },
-
-  images: {
-    unoptimized: true,
-  },
 };
 
 const plugins = [

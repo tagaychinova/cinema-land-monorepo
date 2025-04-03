@@ -6,7 +6,7 @@ export function MovieCard() {
     <Link href="/movie/536">
       <div className="rounded-sm relative inline-block overflow-hidden text-sm text-center">
         <Image
-          src="/poster.jpg"
+          src="/images/poster.jpg"
           width={200}
           height={300}
           alt="Picture of the author"
