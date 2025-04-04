@@ -25,10 +25,11 @@ export default function Index() {
               Welcome my-new-app 👋
             </h1>
             <Image
-              src="/poster.jpg"
+              src="/1.jpg"
               width={200}
               height={300}
               alt="Picture of the author"
+              unoptimized
             />
           </div>
 
