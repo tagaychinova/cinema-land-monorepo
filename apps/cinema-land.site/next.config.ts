@@ -1,7 +1,14 @@
-import type { NextConfig } from 'next';
+import { composePlugins, withNx } from '@nx/next';
+import type { WithNxOptions } from '@nx/next/plugins/with-nx';
 
-const nextConfig: NextConfig = {
-  /* config options here */
+const nextConfig: WithNxOptions = {
+  nx: {},
+
+  compiler: {
+    styledComponents: true,
+  },
 };
 
-export default nextConfig;
+const plugins = [withNx];
+
+module.exports = composePlugins(...plugins)(nextConfig);
