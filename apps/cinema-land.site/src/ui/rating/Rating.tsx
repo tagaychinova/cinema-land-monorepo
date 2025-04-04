@@ -1,4 +1,4 @@
-import { StartSolidIcon } from '@icons';
+import { StartSolidIcon } from '../../icons/StartSolidIcon';
 
 type Props = {
   value: number;
@@ -6,7 +6,7 @@ type Props = {
 
 export function Rating({ value }: Props) {
   return (
-    <>
+    <div data-testid="rating">
       <StartSolidIcon />
       <StartSolidIcon />
       <StartSolidIcon />
@@ -17,6 +17,6 @@ export function Rating({ value }: Props) {
       <StartSolidIcon />
       <StartSolidIcon />
       <StartSolidIcon />
-    </>
+    </div>
   );
 }
