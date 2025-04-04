@@ -3,6 +3,7 @@
 import styled from 'styled-components';
 
 import Image from 'next/image';
+import img from '../../public/2.webp';
 
 const StyledPage = styled.div`
   .page {
@@ -25,7 +26,7 @@ export default function Index() {
               Welcome my-new-app 👋
             </h1>
             <Image
-              src="/1.jpg"
+              src={img}
               width={200}
               height={300}
               alt="Picture of the author"

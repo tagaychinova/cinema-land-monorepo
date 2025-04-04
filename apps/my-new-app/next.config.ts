@@ -1,7 +1,17 @@
-import type { NextConfig } from "next";
+import { composePlugins, withNx } from '@nx/next';
+import type { WithNxOptions } from '@nx/next/plugins/with-nx';
+const withImages = require('next-images');
 
-const nextConfig: NextConfig = {
-  /* config options here */
+const nextConfig: WithNxOptions = {
+  nx: {},
+  images: {
+    disableStaticImages: true,
+  },
+  compiler: {
+    styledComponents: true,
+  },
 };
 
-export default nextConfig;
+const plugins = [withNx, withImages];
+
+module.exports = composePlugins(...plugins)(nextConfig);
