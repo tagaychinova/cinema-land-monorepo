@@ -3,14 +3,5 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/cinema-land.site",
   "projectType": "application",
-  "tags": [],
-  "targets": {
-    "build": {
-      "executor": "@nx/next:build",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "outputPath": "dist/apps/cinema-land.site"
-      }
-    }
-  }
+  "tags": []
 }
