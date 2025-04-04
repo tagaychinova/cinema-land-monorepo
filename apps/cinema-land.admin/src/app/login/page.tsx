@@ -14,7 +14,7 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import Grid from '@mui/material/Grid2';
+import Grid from '@mui/material/Grid';
 import { login } from './actions';
 import { Controller, useForm } from 'react-hook-form';
 import { useState } from 'react';
@@ -42,7 +42,7 @@ export default function LoginPage() {
       setLoginError(
         loginResult.isUserNotFoundError
           ? 'Пользователь с такой эл. почтой и паролем не найден'
-          : 'Ошибка'
+          : 'Ошибка',
       );
     }
   };
@@ -52,13 +52,13 @@ export default function LoginPage() {
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const handleMouseDownPassword = (
-    event: React.MouseEvent<HTMLButtonElement>
+    event: React.MouseEvent<HTMLButtonElement>,
   ) => {
     event.preventDefault();
   };
 
   const handleMouseUpPassword = (
-    event: React.MouseEvent<HTMLButtonElement>
+    event: React.MouseEvent<HTMLButtonElement>,
   ) => {
     event.preventDefault();
   };
