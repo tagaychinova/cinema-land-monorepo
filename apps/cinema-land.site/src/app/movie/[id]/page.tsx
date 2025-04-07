@@ -11,7 +11,7 @@ export default function Movie({ params }: { params: Params }) {
     <div className="max-w-(--content-width) m-auto flex gap-6 mt-12">
       <Image
         className="w-100 h-150"
-        src="/images/poster_lg.jpg"
+        src="/api/image/563"
         width={400}
         height={600}
         alt="Picture of the author"
