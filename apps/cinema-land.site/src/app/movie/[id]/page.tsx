@@ -1,5 +1,4 @@
 import { use } from 'react';
-import Image from 'next/image';
 import { Rating } from '@ui';
 
 type Params = Promise<{ id: string }>;
@@ -9,7 +8,7 @@ export default function Movie({ params }: { params: Params }) {
 
   return (
     <div className="max-w-(--content-width) m-auto flex gap-6 mt-12">
-      <Image
+      <img
         className="w-100 h-150"
         src="/api/image/563"
         width={400}

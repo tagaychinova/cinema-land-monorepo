@@ -1,12 +1,11 @@
-import Image from 'next/image';
 import Link from 'next/link';
 
 export function MovieCard() {
   return (
     <Link href="/movie/536">
       <div className="rounded-sm relative inline-block overflow-hidden text-sm text-center">
-        <Image
-          src="/images/poster.jpg"
+        <img
+          src="/api/image/563"
           width={200}
           height={300}
           alt="Picture of the author"
