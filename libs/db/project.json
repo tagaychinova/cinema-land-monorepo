@@ -36,6 +36,22 @@
         "command": "prisma migrate dev --name init",
         "envFile": "libs/db/.env"
       }
+    },
+    "prisma-migrate-reset": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "libs/db",
+        "command": "prisma migrate reset",
+        "envFile": "libs/db/.env"
+      }
+    },
+    "prisma-format": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "libs/db",
+        "command": "prisma format",
+        "envFile": "libs/db/.env"
+      }
     }
   }
 }

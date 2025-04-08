@@ -5,35 +5,46 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
   previewFeatures = ["postgresqlExtensions"]
 }
 
 datasource db {
-  provider = "postgresql"
-  url = env("POSTGRES_PRISMA_URL")
+  provider   = "postgresql"
+  url        = env("POSTGRES_PRISMA_URL")
   extensions = [uuidOssp(map: "uuid-ossp")]
 }
 
 model Movie {
-  id                String   @id @default(dbgenerated("public.uuid_generate_v4()")) @db.Uuid
-  title             String
-  genre             String
-  yearOfIssue       Int
+  id          String @id @default(dbgenerated("public.uuid_generate_v4()")) @db.Uuid
+  title       String
+  genre       String
+  yearOfIssue Int
+  coverFileId Int?
+  coverFile   File?  @relation(fields: [coverFileId], references: [id])
 }
 
 model Country {
-  id                Int       @id @default(autoincrement())
-  name              String    @unique
+  id   Int    @id @default(autoincrement())
+  name String @unique
 }
 
 model Genre {
-  id                Int       @id @default(autoincrement())
-  name              String    @unique
+  id   Int    @id @default(autoincrement())
+  name String @unique
 }
 
 model User {
-  id                Int       @id @default(autoincrement())
-  email             String    @unique
-  password          String
+  id       Int    @id @default(autoincrement())
+  email    String @unique
+  password String
+}
+
+model File {
+  id        Int      @id @default(autoincrement())
+  name      String
+  extension String
+  data      Bytes    @db.ByteA
+  createdAt DateTime @default(now())
+  Movie     Movie[]
 }
