@@ -3,5 +3,17 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/cinema-land.site",
   "projectType": "application",
-  "tags": []
+  "tags": [],
+  "targets": {
+    "build": {
+      "dependsOn": [{ "projects": "db", "target": "prisma-generate" }]
+    },
+    "debug": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/cinema-land.admin",
+        "command": "NODE_OPTIONS='--inspect' next dev"
+      }
+    }
+  }
 }
