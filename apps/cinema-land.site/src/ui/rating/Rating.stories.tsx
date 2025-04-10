@@ -9,18 +9,4 @@ export default meta;
 
 type Story = StoryObj<typeof Rating>;
 
-// If you have the actions addon,
-// you can interact with the links and see the route change events there
-export const RatingExample: Story = {
-  parameters: {
-    nextjs: {
-      router: {
-        pathname: '/movie/[id]',
-        asPath: '/movie/1',
-        query: {
-          id: '1',
-        },
-      },
-    },
-  },
-};
+export const RatingExample: Story = {};

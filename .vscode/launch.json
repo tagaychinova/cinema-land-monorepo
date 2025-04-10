@@ -2,11 +2,24 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Debug cinema-land.admin",
+      "name": "Debug admin",
       "type": "node-terminal",
       "request": "launch",
       "command": "nx dev cinema-land.admin",
       "cwd": "${workspaceFolder}/apps/cinema-land.admin",
+      "serverReadyAction": {
+        "action": "debugWithChrome",
+        "pattern": "- Local:.+(https?://.+)",
+        "uriFormat": "%s",
+        "webRoot": "${workspaceFolder}"
+      }
+    },
+    {
+      "name": "Debug site",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "nx dev cinema-land.site",
+      "cwd": "${workspaceFolder}/apps/cinema-land.site",
       "serverReadyAction": {
         "action": "debugWithChrome",
         "pattern": "- Local:.+(https?://.+)",
