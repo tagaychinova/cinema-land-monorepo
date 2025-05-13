@@ -24,6 +24,8 @@ const nextConfig = {
     },
   },
 
+  env: require('dotenv').config().parsed,
+
   redirects: async () => {
     return [
       {
