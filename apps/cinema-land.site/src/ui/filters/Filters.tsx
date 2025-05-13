@@ -1,12 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { Option } from '@types';
 import { MultiSelect, SingleSelect } from '../select';
-
-type Option = {
-  id: number;
-  name: string;
-};
+import { useAppDispatch, useAppSelector } from '@lib/hooks';
+import { setGenreFilter, setYearFilter, setAgeFilter } from '@lib/features';
+import { SelectedFilters } from './SelectedFilters';
 
 const genre = [
   { id: 1, name: 'Боевик' },
@@ -16,7 +14,7 @@ const genre = [
   { id: 5, name: 'История' },
 ];
 
-const ages = [
+const ages: Option[] = [
   { id: 1, name: 'до 12' },
   { id: 2, name: 'до 16' },
   { id: 3, name: 'до 18' },
@@ -31,33 +29,45 @@ const yearOfIssues: Option[] = [
 ];
 
 export function Filters() {
-  const [selectedGenre, setSelectedGenre] = useState<Option[]>([]);
-  const [selectedAge, setSelectedAge] = useState<Option | null>(null);
-  const [selectedYear, setSelectedYear] = useState<Option[]>([]);
+  const filters = useAppSelector((state) => state.filters);
+
+  const dispatch = useAppDispatch();
+
+  const setSelectedGenre = (selected: Option[]) =>
+    dispatch(setGenreFilter(selected));
+
+  const setSelectedYear = (selected: Option[]) =>
+    dispatch(setYearFilter(selected));
+
+  const setSelectedAge = (selected: Option | null) =>
+    dispatch(setAgeFilter(selected));
 
   return (
-    <div className="flex gap-8">
-      <MultiSelect
-        title="Жанр"
-        resetOptionTitle="Любой жанр"
-        options={genre}
-        value={selectedGenre}
-        setValue={setSelectedGenre}
-      />
-      <MultiSelect
-        title="Год выпуска"
-        resetOptionTitle="все года"
-        options={yearOfIssues}
-        value={selectedYear}
-        setValue={setSelectedYear}
-      />
-      <SingleSelect
-        title="Все возраста"
-        resetOptionTitle="Все возраста"
-        options={ages}
-        value={selectedAge}
-        setValue={setSelectedAge}
-      />
-    </div>
+    <>
+      <div className="flex gap-8 mb-5 mt-5">
+        <MultiSelect
+          title="Жанр"
+          resetOptionTitle="Любой жанр"
+          options={genre}
+          value={filters.genreFilter}
+          setValue={setSelectedGenre}
+        />
+        <MultiSelect
+          title="Год выпуска"
+          resetOptionTitle="все года"
+          options={yearOfIssues}
+          value={filters.yearFilter}
+          setValue={setSelectedYear}
+        />
+        <SingleSelect
+          title="Все возраста"
+          resetOptionTitle="Все возраста"
+          options={ages}
+          value={filters.ageFilter}
+          setValue={setSelectedAge}
+        />
+      </div>
+      <SelectedFilters />
+    </>
   );
 }
