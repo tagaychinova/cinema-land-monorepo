@@ -15,6 +15,15 @@ export function SelectedFilters() {
   const handleCloseYear = (id: number) => dispatch(closeYearFilter(id));
   const handleCloseAge = () => dispatch(closeAgeFilter());
 
+  const hasSelectedFilters =
+    filters.genreFilter.length ||
+    filters.yearFilter.length ||
+    filters.ageFilter;
+
+  if (!hasSelectedFilters) {
+    return null;
+  }
+
   return (
     <div className="flex items-center gap-8 mb-5 mt-5 text-gray-500 dark:text-gray-400">
       <span>Найдено: 35</span>
