@@ -1,14 +1,7 @@
 import * as React from 'react';
 
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  IconButton,
-} from '@mui/material';
-import CloseIcon from '@mui/icons-material/Close';
+import { Button, DialogActions, DialogContent } from '@mui/material';
+import { Dialog } from './Dialog';
 
 type Props = {
   title: string;
@@ -16,8 +9,8 @@ type Props = {
   cancelButtonTitle?: string;
   okButtonTitle?: string;
 
-  handleCancel: () => void;
-  handleConfirm: () => void;
+  onCancel: () => void;
+  onConfirm: () => void;
 };
 
 export default function ConfirmModal({
@@ -25,28 +18,15 @@ export default function ConfirmModal({
   children,
   cancelButtonTitle = 'Отмена',
   okButtonTitle = 'Да',
-  handleCancel,
-  handleConfirm,
+  onCancel,
+  onConfirm,
 }: Props) {
   return (
-    <Dialog data-testid="dialog" onClose={handleCancel} open>
-      <DialogTitle data-testid="dialog-title">{title}</DialogTitle>
-      <IconButton
-        aria-label="close"
-        onClick={handleCancel}
-        sx={(theme) => ({
-          position: 'absolute',
-          right: 8,
-          top: 8,
-          color: theme.palette.grey[500],
-        })}
-      >
-        <CloseIcon />
-      </IconButton>
+    <Dialog title={title} onClose={onCancel}>
       <DialogContent dividers>{children}</DialogContent>
       <DialogActions>
-        <Button onClick={handleCancel}>{cancelButtonTitle}</Button>
-        <Button onClick={handleConfirm}>{okButtonTitle}</Button>
+        <Button onClick={onCancel}>{cancelButtonTitle}</Button>
+        <Button onClick={onConfirm}>{okButtonTitle}</Button>
       </DialogActions>
     </Dialog>
   );

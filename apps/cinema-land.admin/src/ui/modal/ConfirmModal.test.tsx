@@ -1,39 +1,85 @@
-import { render } from '@testing-library/react';
+import React from 'react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import ConfirmModal from './ConfirmModal';
 
 describe('ConfirmModal', () => {
-  test('should be rendered', async () => {
-    const { getByTestId } = render(
+  const title = 'Подтвердите действие';
+  const childrenText = 'Вы уверены, что хотите продолжить?';
+
+  const handleCancel = jest.fn();
+  const handleConfirm = jest.fn();
+
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  test('отображает заголовок и содержимое', () => {
+    render(
       <ConfirmModal
-        title="Confirm action"
-        handleCancel={() => {}}
-        handleConfirm={() => {}}
+        title={title}
+        onCancel={handleCancel}
+        onConfirm={handleConfirm}
       >
-        <div>Please confirm action</div>
-      </ConfirmModal>
+        {childrenText}
+      </ConfirmModal>,
     );
 
-    expect(getByTestId('dialog')).toBeInTheDocument();
+    // Проверка отображения заголовка
+    expect(screen.getByText(title)).toBeInTheDocument();
+
+    // Проверка отображения содержимого
+    expect(screen.getByText(childrenText)).toBeInTheDocument();
+
+    // Проверка наличия кнопок с правильными названиями
+    expect(screen.getByText('Отмена')).toBeInTheDocument();
+    expect(screen.getByText('Да')).toBeInTheDocument();
   });
-});
 
-test('displays confirm modal', async () => {
-  // ARRANGE
-  const { container, getByText, getByTestId } = render(
-    <ConfirmModal
-      title="Confirm action"
-      handleCancel={() => {}}
-      handleConfirm={() => {}}
-    >
-      <div>Please confirm action</div>
-    </ConfirmModal>
-  );
+  test('при клике на кнопку "Отмена" вызывается handleCancel', () => {
+    render(
+      <ConfirmModal
+        title={title}
+        onCancel={handleCancel}
+        onConfirm={handleConfirm}
+      >
+        {childrenText}
+      </ConfirmModal>,
+    );
 
-  expect(getByTestId('dialog')).toBeInTheDocument();
+    const cancelButton = screen.getByText('Отмена');
+    fireEvent.click(cancelButton);
+    expect(handleCancel).toHaveBeenCalledTimes(1);
+  });
 
-  // console.log(prettyDOM(getByTestId('dialog')));
+  test('при клике на кнопку "Да" вызывается handleConfirm', () => {
+    render(
+      <ConfirmModal
+        title={title}
+        onCancel={handleCancel}
+        onConfirm={handleConfirm}
+      >
+        {childrenText}
+      </ConfirmModal>,
+    );
 
-  const title = getByTestId('dialog-title');
-  // ASSERT
-  expect(title).toHaveTextContent('Confirm action');
+    const okButton = screen.getByText('Да');
+    fireEvent.click(okButton);
+    expect(handleConfirm).toHaveBeenCalledTimes(1);
+  });
+
+  test('при клике на иконку закрытия вызывается handleCancel', () => {
+    render(
+      <ConfirmModal
+        title={title}
+        onCancel={handleCancel}
+        onConfirm={handleConfirm}
+      >
+        {childrenText}
+      </ConfirmModal>,
+    );
+
+    const closeButton = screen.getByLabelText('close');
+    fireEvent.click(closeButton);
+    expect(handleCancel).toHaveBeenCalledTimes(1);
+  });
 });

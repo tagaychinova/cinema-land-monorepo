@@ -1,7 +1,5 @@
 'use client';
 
-import * as React from 'react';
-
 import {
   Table,
   TableBody,
@@ -11,14 +9,14 @@ import {
   TableRow,
 } from '@mui/material';
 
-import { Country } from '@types';
+import { Genre } from '@types';
 import { AddButton, DeleteButton, EditButton } from './buttons';
 
 interface Props {
-  countries: Country[];
+  genres: Genre[];
 }
 
-export default function List({ countries }: Props) {
+export function List({ genres }: Props) {
   return (
     <>
       <AddButton />
@@ -31,12 +29,12 @@ export default function List({ countries }: Props) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {countries.map((country) => (
-              <TableRow hover key={country.id}>
-                <TableCell>{country.name}</TableCell>
+            {genres.map((genre) => (
+              <TableRow hover key={genre.id}>
+                <TableCell>{genre.name}</TableCell>
                 <TableCell>
-                  <EditButton country={country} />
-                  <DeleteButton country={country} />
+                  <EditButton genre={genre} />
+                  <DeleteButton genre={genre} />
                 </TableCell>
               </TableRow>
             ))}

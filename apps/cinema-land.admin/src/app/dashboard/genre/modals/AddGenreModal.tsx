@@ -1,27 +1,27 @@
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
-import { Country } from '@types';
-import { addCountry } from '../actions';
+import { Genre } from '@types';
+import { addGenre } from '../actions';
 import { useAppDispatch } from '@lib/hooks';
 import { setToastMessage } from '@lib/features';
 import { useCallback } from 'react';
-import CountryDialog from './CountryDialog';
+import { GenreDialog } from './GenreDialog';
 import { createAddResultMessage } from './messages';
 
 type Props = {
   onClose: () => void;
 };
 
-export function AddCountryModal({ onClose }: Props) {
+export function AddGenreModal({ onClose }: Props) {
   const { control, handleSubmit, getValues, formState } =
-    useForm<Omit<Country, 'id'>>();
+    useForm<Omit<Genre, 'id'>>();
 
   const dispatch = useAppDispatch();
 
   const onSubmit = useCallback(async () => {
     const values = getValues();
 
-    const result = await addCountry(values);
+    const result = await addGenre(values);
 
     const message = createAddResultMessage(result, values.name);
 
@@ -33,8 +33,8 @@ export function AddCountryModal({ onClose }: Props) {
   }, [dispatch, getValues, onClose]);
 
   return (
-    <CountryDialog
-      title="Добавление страны"
+    <GenreDialog
+      title="Добавление жанра"
       control={control}
       formState={formState}
       onClose={onClose}

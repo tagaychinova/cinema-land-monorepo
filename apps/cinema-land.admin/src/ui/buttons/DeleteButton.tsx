@@ -1,18 +1,18 @@
-import * as React from 'react';
+'use client';
 
-import { Country } from '@types';
+import { useState } from 'react';
+
 import { Modal } from '@ui';
 import { IconButton, Tooltip } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { useState } from 'react';
 
 interface Props {
-  country: Country;
+  confirmMessage: React.ReactNode;
 
-  deleteCountry: (id: number) => void;
+  deleteAction: () => void;
 }
 
-export default function DeleteButton({ country, deleteCountry }: Props) {
+export function DeleteButton({ confirmMessage, deleteAction }: Props) {
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
@@ -21,7 +21,7 @@ export default function DeleteButton({ country, deleteCountry }: Props) {
 
   const handleConfirm = () => {
     setOpen(false);
-    deleteCountry(country.id);
+    deleteAction();
   };
 
   const handleCancel = () => {
@@ -37,8 +37,7 @@ export default function DeleteButton({ country, deleteCountry }: Props) {
           onConfirm={handleConfirm}
           onCancel={handleCancel}
         >
-          Вы действительно хотите удалить страну &quot;
-          <strong>{country.name}</strong>&quot;?
+          {confirmMessage}
         </Modal.Confirm>
       )}
       <Tooltip title="Удалить">

@@ -1,25 +1,25 @@
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
-import { Country } from '@types';
-import { editCountry } from '../actions';
+import { Genre } from '@types';
+import { editGenre } from '../actions';
 import { useAppDispatch } from '@lib/hooks';
 import { setToastMessage } from '@lib/features';
 import { useCallback } from 'react';
-import CountryDialog from './CountryDialog';
+import { GenreDialog } from './GenreDialog';
 import { createEditResultMessage } from './messages';
 
 type Props = {
-  country: Country;
+  genre: Genre;
 
   onClose: () => void;
 };
 
-export function EditCountryModal({ country, onClose }: Props) {
+export function EditGenreModal({ genre, onClose }: Props) {
   const { control, handleSubmit, getValues, formState } = useForm<
-    Omit<Country, 'id'>
+    Omit<Genre, 'id'>
   >({
     defaultValues: {
-      name: country.name,
+      name: genre.name,
     },
   });
 
@@ -28,8 +28,8 @@ export function EditCountryModal({ country, onClose }: Props) {
   const onSubmit = useCallback(async () => {
     const values = getValues();
 
-    const result = await editCountry({
-      id: country.id,
+    const result = await editGenre({
+      id: genre.id,
       ...values,
     });
 
@@ -40,11 +40,11 @@ export function EditCountryModal({ country, onClose }: Props) {
     if (result.success) {
       onClose();
     }
-  }, [dispatch, country, getValues, onClose]);
+  }, [dispatch, genre, getValues, onClose]);
 
   return (
-    <CountryDialog
-      title="Редактирование страны"
+    <GenreDialog
+      title="Редактирование жанра"
       control={control}
       formState={formState}
       onClose={onClose}

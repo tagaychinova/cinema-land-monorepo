@@ -7,19 +7,19 @@ import {
   TextField,
 } from '@mui/material';
 import { Control, Controller, FormState } from 'react-hook-form';
-import { Country } from '@types';
+import { Genre } from '@types';
 import { Modal } from '@ui';
 
 type Props = {
   title: string;
-  control: Control<Omit<Country, 'id'>, any>;
-  formState: FormState<Omit<Country, 'id'>>;
+  control: Control<Omit<Genre, 'id'>, any>;
+  formState: FormState<Omit<Genre, 'id'>>;
 
   onClose: () => void;
   onSubmit: () => Promise<void>;
 };
 
-export default function CountryDialog({
+export function GenreDialog({
   title,
   control,
   formState,
