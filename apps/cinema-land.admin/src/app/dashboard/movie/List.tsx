@@ -1,6 +1,6 @@
 'use client';
+
 import * as React from 'react';
-import { useGetMoviesQuery } from '../../../lib/services/movie';
 import Link from 'next/link';
 import {
   Table,
@@ -11,22 +11,17 @@ import {
   TablePagination,
   TableRow,
 } from '@mui/material';
+import { Movie } from '@types';
 
-export default function List() {
-  const { data, error, isLoading } = useGetMoviesQuery();
+interface Props {
+  movies: Movie[];
+}
 
-  if (error) {
-    return <div>Error</div>;
-  }
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
+export default function List({ movies }: Props) {
   const handleChangePage = (event: unknown, newPage: number) => {};
 
   const handleChangeRowsPerPage = (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
   ) => {};
 
   return (
@@ -41,7 +36,7 @@ export default function List() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {(data || []).map((movie) => (
+            {movies.map((movie) => (
               <TableRow hover key={movie.id}>
                 <TableCell>
                   <Link href={`/dashboard/movie/${movie.id}`}>

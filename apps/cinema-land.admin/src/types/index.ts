@@ -1,8 +1,9 @@
 export interface Movie {
   id: string;
   title: string;
-  genre: string;
+  genre: string[];
   yearOfIssue: number;
+  coverFileId?: number;
 }
 
 export interface Country {

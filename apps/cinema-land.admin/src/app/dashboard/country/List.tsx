@@ -3,7 +3,6 @@
 import * as React from 'react';
 
 import {
-  Box,
   Table,
   TableBody,
   TableCell,
@@ -13,7 +12,7 @@ import {
 } from '@mui/material';
 
 import { Country } from '@types';
-import { AddButton, DeleteButton, EditButton } from './buttons';
+import { DeleteButton, EditButton } from './buttons';
 
 interface Props {
   countries: Country[];
@@ -21,31 +20,26 @@ interface Props {
 
 export default function List({ countries }: Props) {
   return (
-    <>
-      <Box sx={{ ml: 2, mt: 1, mb: 1.5 }}>
-        <AddButton />
-      </Box>
-      <TableContainer>
-        <Table stickyHeader aria-label="sticky table" sx={{ width: 600 }}>
-          <TableHead>
-            <TableRow>
-              <TableCell>Название</TableCell>
-              <TableCell />
+    <TableContainer>
+      <Table stickyHeader aria-label="sticky table" sx={{ width: 600 }}>
+        <TableHead>
+          <TableRow>
+            <TableCell>Название</TableCell>
+            <TableCell />
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {countries.map((country) => (
+            <TableRow hover key={country.id}>
+              <TableCell>{country.name}</TableCell>
+              <TableCell width={120}>
+                <EditButton country={country} />
+                <DeleteButton country={country} />
+              </TableCell>
             </TableRow>
-          </TableHead>
-          <TableBody>
-            {countries.map((country) => (
-              <TableRow hover key={country.id}>
-                <TableCell>{country.name}</TableCell>
-                <TableCell width={120}>
-                  <EditButton country={country} />
-                  <DeleteButton country={country} />
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 }

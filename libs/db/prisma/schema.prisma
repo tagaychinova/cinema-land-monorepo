@@ -18,7 +18,7 @@ datasource db {
 model Movie {
   id          String @id @default(dbgenerated("public.uuid_generate_v4()")) @db.Uuid
   title       String
-  genre       String
+  genres      String[]
   yearOfIssue Int
   coverFileId Int?
   coverFile   File?  @relation(fields: [coverFileId], references: [id])

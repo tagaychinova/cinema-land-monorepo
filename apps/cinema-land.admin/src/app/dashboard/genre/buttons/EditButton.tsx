@@ -1,3 +1,5 @@
+'use client';
+
 import { useState } from 'react';
 import { EditButton as EditEntityButton } from '@ui';
 import { EditGenreModal } from '../modals';
