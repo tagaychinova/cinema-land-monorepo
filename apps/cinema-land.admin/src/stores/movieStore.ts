@@ -7,7 +7,7 @@ async function getMovies() {
   const movies: Movie[] = dbMovies.map((m) => ({
     id: m.id,
     title: m.title,
-    genre: m.genre,
+    genre: m.genres,
     yearOfIssue: m.yearOfIssue,
   }));
 
