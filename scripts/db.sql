@@ -1,11 +1,13 @@
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
+/*
 CREATE TABLE IF NOT EXISTS movie (
 	id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
 	title VARCHAR(255) NOT NULL,
 	genre VARCHAR(255) NOT NULL,
 	"yearOfIssue" INT NOT NULL
 );
+*/
 
 INSERT INTO "Movie" (title, "yearOfIssue") VALUES
     ('Интерстеллар', 2014),
