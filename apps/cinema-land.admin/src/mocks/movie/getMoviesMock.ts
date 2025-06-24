@@ -2,6 +2,7 @@ import { http, HttpResponse } from 'msw';
 import { Movie } from '../../types';
 
 const movies: Movie[] = [
+  /*
   {
     id: '1',
     title: '222',
@@ -16,6 +17,7 @@ const movies: Movie[] = [
   { id: '7', title: 'Clifford', genre: ['Ferrara'], yearOfIssue: 44 },
   { id: '8', title: 'Frances', genre: ['Rossini'], yearOfIssue: 36 },
   { id: '9', title: 'Roxie', genre: ['Harvey'], yearOfIssue: 65 },
+   */
 ];
 
 export const getMoviesMock = http.get(
