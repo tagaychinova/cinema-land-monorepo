@@ -1,5 +1,6 @@
 import { movieStore } from '@stores';
 import Form from './Form';
+import { duration } from '@mui/material';
 
 type Params = Promise<{ id: string }>;
 
@@ -18,6 +19,8 @@ export default async function Page({ params }: { params: Params }) {
     genreIds: [],
     coverFileId: movie?.coverFileId || undefined,
     rating: 5,
+    durationMinutes: 0,
+    description: '',
   };
 
   return <Form movie={data} />;
