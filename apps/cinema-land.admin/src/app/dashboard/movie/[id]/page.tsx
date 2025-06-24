@@ -14,8 +14,10 @@ export default async function Page({ params }: { params: Params }) {
 
   const data = {
     ...movie,
-    genre: [],
+    countryIds: [],
+    genreIds: [],
     coverFileId: movie?.coverFileId || undefined,
+    rating: 5,
   };
 
   return <Form movie={data} />;

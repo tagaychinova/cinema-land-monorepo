@@ -12,7 +12,7 @@ interface Props {
 export function NavItem({ title, Icon, href, showTitle }: Props) {
   const pathname = usePathname();
 
-  const isActiveLink = href.startsWith(pathname);
+  const isActiveLink = pathname.startsWith(href);
 
   const link = (
     <Link href={href}>

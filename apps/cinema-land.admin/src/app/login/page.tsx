@@ -20,7 +20,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { User } from './type';
-import { loginFormSchema } from '../../validation';
+import { loginFormSchema } from '@validation';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 export default function LoginPage() {

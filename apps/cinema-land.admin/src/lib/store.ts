@@ -1,17 +1,21 @@
 import { configureStore } from '@reduxjs/toolkit';
 import toastMessageReducer from './features/toastMessage/toastMessageSlice';
 import navbarReducer from './features/navbar/navbarSlice';
-import { movieApi } from './services/movie';
+import { countryApi, genreApi } from './services';
 
 export const makeStore = () => {
   return configureStore({
     reducer: {
       toastMessage: toastMessageReducer,
       navbar: navbarReducer,
-      [movieApi.reducerPath]: movieApi.reducer,
+      [countryApi.reducerPath]: countryApi.reducer,
+      [genreApi.reducerPath]: genreApi.reducer,
     },
     middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().concat(movieApi.middleware),
+      getDefaultMiddleware().concat([
+        countryApi.middleware,
+        genreApi.middleware,
+      ]),
   });
 };
 

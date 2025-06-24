@@ -1,9 +1,13 @@
 export interface Movie {
   id: string;
   title: string;
-  genre: string[];
+  countryIds: number[];
+  genreIds: number[];
   yearOfIssue: number;
   coverFileId?: number;
+  rating: number;
+  description: string;
+  durationMinutes: number;
 }
 
 export interface Country {
