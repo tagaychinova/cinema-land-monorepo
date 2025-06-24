@@ -43,7 +43,7 @@ export default function List({ movies }: Props) {
                     {movie.title}
                   </Link>
                 </TableCell>
-                <TableCell>{movie.genre}</TableCell>
+                <TableCell></TableCell>
                 <TableCell>{movie.yearOfIssue}</TableCell>
               </TableRow>
             ))}
