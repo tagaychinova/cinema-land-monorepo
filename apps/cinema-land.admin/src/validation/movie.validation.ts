@@ -1,3 +1,4 @@
+import { MovieType } from '@types';
 import { z } from 'zod';
 
 const MIN_YEAR_OF_ISSUE = 1888;
@@ -9,9 +10,11 @@ const MAX_RATING = 10;
 export const movieFormSchema = z.object({
   id: z.string(),
   title: z.string().nonempty('Значение не может быть пустым'),
+  movieType: z.number().refine((val) => !!val, 'Выберите значение'),
   countryIds: z.array(z.number()),
   genreIds: z.array(z.number()),
   durationMinutes: z.number(),
+  ageRating: z.number().refine((val) => !!val, 'Выберите значение'),
 
   yearOfIssue: z
     .number()

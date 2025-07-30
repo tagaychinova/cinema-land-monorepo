@@ -1,6 +1,6 @@
 import { movieStore } from '@stores';
 import Form from './Form';
-import { duration } from '@mui/material';
+import { MovieType } from '@types';
 
 type Params = Promise<{ id: string }>;
 
@@ -21,6 +21,8 @@ export default async function Page({ params }: { params: Params }) {
     rating: 5,
     durationMinutes: 0,
     description: '',
+    movieType: MovieType.Cartoon,
+    ageRating: 12,
   };
 
   return <Form movie={data} />;

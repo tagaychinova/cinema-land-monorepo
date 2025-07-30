@@ -1,6 +1,13 @@
+export enum MovieType {
+  Film = 1,
+  Cartoon = 2,
+  Series = 3,
+}
+
 export interface Movie {
   id: string;
   title: string;
+  movieType: MovieType;
   countryIds: number[];
   genreIds: number[];
   yearOfIssue: number;
@@ -8,6 +15,7 @@ export interface Movie {
   rating: number;
   description: string;
   durationMinutes: number;
+  ageRating: number;
 }
 
 export interface Country {
