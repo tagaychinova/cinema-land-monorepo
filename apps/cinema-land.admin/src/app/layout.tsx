@@ -13,7 +13,6 @@ import './global.css';
 import StoreProvider from './StoreProvider';
 import BrowserMocks from './BrowserMocks';
 import { ToastMessage } from '@ui';
-import { SessionProvider } from 'next-auth/react';
 
 export const metadata = {
   title: 'Cinema Land. Admin Dashboard',

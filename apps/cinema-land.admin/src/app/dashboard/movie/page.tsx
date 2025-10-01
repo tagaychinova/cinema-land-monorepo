@@ -1,7 +1,7 @@
-import { Box } from '@mui/material';
+import { Box, Link } from '@mui/material';
 import List from './List';
 import { movieStore } from '@stores';
-import { AddButton } from './buttons';
+import { AddButton } from '@ui';
 
 export default async function Page() {
   const movies = await movieStore.getMovies();
@@ -9,7 +9,9 @@ export default async function Page() {
   return (
     <>
       <Box sx={{ ml: 2, mt: 1, mb: 1.5 }}>
-        <AddButton />
+        <Link href="/dashboard/movie/create">
+          <AddButton />
+        </Link>
       </Box>
       <List movies={movies} />
     </>
