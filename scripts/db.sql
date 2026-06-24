@@ -15,7 +15,7 @@ INSERT INTO "Movie" (title, "yearOfIssue") VALUES
     ('Матрица', 1999);
 
 INSERT INTO "Country" (name) VALUES
-    ('Австралия')
+    ('Австралия'),
     ('Россия'),
 	('США'),
     ('Франция');
